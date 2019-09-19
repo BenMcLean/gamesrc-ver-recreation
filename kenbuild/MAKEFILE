@@ -1,0 +1,62 @@
+# A bit of a hack
+!ifeq BUILDREV 20000614
+IS_LATE=1
+!else ifeq BUILDREV 19971004
+IS_LATE=1
+!else
+IS_LATE=0
+!endif
+
+# Note: We might not pass -DLIBVER_BUILDREV if it isn't necessary
+!ifeq IS_LATE 1
+common_opt=/5r /s /orb -DLIBVER_BUILDREV=$(BUILDREV)
+!else
+common_opt=/4r /s /or -DLIBVER_BUILDREV=$(BUILDREV)
+!endif
+
+.exe : $(BUILDREV)
+.obj : $(BUILDREV)
+
+game.exe : game.obj engine.obj cache1d.obj multi.obj a.obj kdmeng.obj k.obj
+	cd $(BUILDREV)
+	wlink f game f engine f cache1d f multi f a f kdmeng f k
+	cd ..
+build.exe : build.obj engine.obj cache1d.obj a.obj bstub.obj
+	cd $(BUILDREV)
+	wlink f build f engine f cache1d f a f bstub
+	cd ..
+
+game.obj : game.c build.h names.h pragmas.h
+	wcc386 game $(common_opt) /fo=$(BUILDREV)\$^&
+build.obj : build.c build.h pragmas.h
+	wcc386 build $(common_opt) /fo=$(BUILDREV)\$^&
+bstub.obj : bstub.c build.h
+	wcc386 bstub $(common_opt) /fo=$(BUILDREV)\$^&
+cache1d.obj : cache1d.c pragmas.h
+	wcc386 cache1d $(common_opt) /fo=$(BUILDREV)\$^&
+engine.obj : engine.c build.h pragmas.h ves2.h
+	wcc386 engine $(common_opt) /fo=$(BUILDREV)\$^&
+!ifeq IS_LATE 1
+a.obj : a_wasm\a.asm
+	cd $(BUILDREV)
+	copy ..\a_wasm\a.asm .
+	wasm a.asm
+!else
+a.obj : a_masm\a.asm
+	cd $(BUILDREV)
+	copy ..\a_masm\a.asm .
+	masm a.asm;
+!endif
+	del a.asm
+	cd..
+mmulti.obj : mmulti.c
+	wcc386 mmulti /4r /s /or -DLIBVER_BUILDREV=$(BUILDREV) /fo=$(BUILDREV)\$^&
+multi.obj : multi.c
+	wcc386 multi /4r /s /or /fo=$(BUILDREV)\$^&
+kdmeng.obj : kdmeng.c makefile.
+	wcc386 kdmeng /4r /s /or /d2 /fo=$(BUILDREV)\$^&
+k.obj : k.asm makefile.
+	cd $(BUILDREV)
+	copy ..\k.asm .
+	wasm k.asm
+	cd..

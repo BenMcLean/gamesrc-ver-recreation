@@ -1,0 +1,92 @@
+### VERSIONS RESTORATION ###
+#
+#Makefile modified as desired, based on the one from the EDuke 2.00.21
+#sources, and also includes dynamic generation of an alternative
+#to MAKEFILE.LNK (based on file from 3DR's released sources).
+#
+#This make file is used with Watcom C/C++ 32 Compiler v10.0
+#(should actually be v10.6a for NAM, WW2GI and EDuke 2.0).
+
+!ifndef appver_exedef
+!error appver_exedef not set!
+!endif
+
+appver_args = -DAPPVER_EXEDEF=$(appver_exedef)
+
+#debug = /d2 /w1
+#all = debug all
+prod = /ort /4r /s /w1
+
+game_objs_minus_animlib = game.obj actors.obj gamedef.obj global.obj menues.obj player.obj &
+			  premap.obj sector.obj sounds.obj rts.obj  &
+                          config.obj
+game_objs = $(game_objs_minus_animlib) animlib.obj
+
+$(appver_exedef)\game.exe: $(game_objs)
+           cd $(appver_exedef)
+!ifeq appver_exedef DN3D14
+           wlink $(all) @..\makef_14.lnk
+!else
+           wlink $(all) @..\makefile.lnk
+!endif
+           cd ..
+
+# use for NAM
+#compileoptions = $(prod) $(debug) -imact -DNAM
+# use for WW2.  Note that NAM must also be defined...
+#compileoptions = $(prod) $(debug) -imact -DNAM -DWW2
+# use for Enhanced Duke v2.00.21.  Note that NAM and WW2 must also be defined...
+#compileoptions = $(prod) $(debug) -imact -DEDUKE -DNAM -DWW2 $(appver_args)
+
+!ifeq appver_exedef EDK20023 # Enhanced Duke v2.00.23
+compileoptions = $(prod) $(debug) -imact -DEDUKE -DNAM -DWW2 $(appver_args)
+!else ifeq appver_exedef WW2GI10 # WW2GI Full Version 1.0
+compileoptions = $(prod) $(debug) -imact -DNAM -DWW2 $(appver_args)
+!else ifeq appver_exedef NAM10 # NAM Full Version 1.0
+compileoptions = $(prod) $(debug) -imact -DNAM $(appver_args)
+!else # Duke Nukem 3D: Atomic Edition v1.5 or earlier
+compileoptions = $(prod) $(debug) -imact $(appver_args)
+!endif
+
+globaldependencies = makefile. duke3d.h global.c
+
+.EXTENSIONS:
+.EXTENSIONS: .exe .obj .c
+
+.obj : $(appver_exedef)
+
+game.obj : game.c $(globaldependencies)
+
+actors.obj : actors.c $(globaldependencies)
+
+gamedef.obj : gamedef.c $(globaldependencies)
+
+global.obj : global.c $(globaldependencies)
+
+menues.obj : menues.c $(globaldependencies)
+
+player.obj : player.c $(globaldependencies)
+
+premap.obj : premap.c $(globaldependencies)
+
+sector.obj : sector.c $(globaldependencies)
+
+sounds.obj : sounds.c $(globaldependencies)
+	wcc386 sounds /fo=$(appver_exedef)\sounds /zu $(compileoptions)
+
+rts.obj : rts.c $(globaldependencies)
+
+config.obj : config.c $(globaldependencies)
+
+animlib.obj : animlib.c $(globaldependencies)
+
+
+.c.obj :
+	wcc386 $[* /fo=$(appver_exedef)\$^& $(compileoptions)
+
+clean: 
+	# Older versions of DOS don't support a single "del" command
+	# with multiple files as separate arguments
+	for %i in ($(game_objs)) do del $(appver_exedef)\%i
+	del $(appver_exedef)\game.map
+	del $(appver_exedef)\game.exe

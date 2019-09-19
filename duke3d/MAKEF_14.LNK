@@ -1,0 +1,11 @@
+system dos4g
+option map
+option stack=90k
+option statics
+option u
+segment type code lo
+segment type data lo
+name game
+file game,actors,gamedef,global,menues,player,premap,sector,sounds,rts,config
+file ..\..\kenbuild\19960820\engine,..\..\kenbuild\19960820\cache1d,..\mmulti,..\a,animlib
+file ..\audio_wf.lib,..\mact386.lib,..\butwcd4.lib

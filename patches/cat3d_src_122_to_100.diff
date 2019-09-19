@@ -1,0 +1,117 @@
+diff -Nur Cat3DSrc/c3_game.c Cat3D10Src/c3_game.c
+--- Cat3DSrc/c3_game.c	2014-06-06 08:58:03.369495600 +0300
++++ Cat3D10Src/c3_game.c	2014-11-25 23:07:53.605253100 +0200
+@@ -341,7 +341,7 @@
+ static  char    *levelnames[] =
+ 				{
+ 					"The Approach",
+-					"Nemesis's Keep",
++					"Grelminar's Keep",
+ 					"Ground Floor",
+ 					"Second Floor",
+ 					"Third Floor",
+@@ -359,7 +359,7 @@
+ 					"Chaos Corridors",
+ 					"The Labyrinth",
+ 					"Halls of Blood",
+-					"Nemesis's Lair"
++					"Grelminar's Lair"
+ 				};
+ void DrawEnterScreen (void)
+ {
+diff -Nur Cat3DSrc/c3_main.c Cat3D10Src/c3_main.c
+--- Cat3DSrc/c3_main.c	2014-06-06 08:58:03.370445200 +0300
++++ Cat3D10Src/c3_main.c	2014-11-25 22:45:34.698668300 +0200
+@@ -329,7 +329,7 @@
+ 	int			i,x,y;
+ 	unsigned	*blockstart;
+ 
+-//	US_TextScreen();
++	US_TextScreen();
+ 
+ 	MM_Startup ();
+ 	VW_Startup ();
+@@ -339,7 +339,7 @@
+ #endif
+ 	US_Startup ();
+ 
+-//	US_UpdateTextScreen();
++	US_UpdateTextScreen();
+ 
+ 	CA_Startup ();
+ 	US_Setup ();
+@@ -390,7 +390,7 @@
+ 	SetupScaling ();
+ 
+ #ifndef PROFILE
+-//	US_FinishTextScreen();
++	US_FinishTextScreen();
+ #endif
+ 
+ //
+@@ -436,7 +436,7 @@
+ {
+ 	unsigned	finscreen;
+ 
+-#if 0
++#if 1
+ 	if (!error)
+ 	{
+ 		CA_SetAllPurge ();
+@@ -452,7 +452,7 @@
+ 	  exit(1);
+ 	}
+ 
+-#if 0
++#if 1
+ 	if (!NoWait)
+ 	{
+ 		movedata (finscreen,0,0xb800,0,4000);
+@@ -704,7 +704,7 @@
+ void main (void)
+ {
+ 	short i;
+-
++#if 0
+ 	if (stricmp(_argv[1], "/VER") == 0)
+ 	{
+ 		printf("Catacomb 3-D version 1.22  (Rev 1)\n");
+@@ -734,7 +734,7 @@
+ 
+ 		exit(0);
+ 	}
+-
++#endif
+ 	jabhack();
+ 
+ 	InitGame ();
+Binary files Cat3DSrc/cat3d.prj and Cat3D10Src/cat3d.prj differ
+diff -Nur Cat3DSrc/id_us_1.c Cat3D10Src/id_us_1.c
+--- Cat3DSrc/id_us_1.c	2014-06-06 08:58:03.396882600 +0300
++++ Cat3D10Src/id_us_1.c	2014-11-25 22:54:20.558122000 +0200
+@@ -674,7 +674,7 @@
+ 
+ 	if (!(tedlevel || NoWait))
+ 	{
+-	      //	IN_ClearKeysDown();
++	      	IN_ClearKeysDown();
+ 		for (i = 0,up = true;!IN_UserInput(4,true);)
+ 		{
+ 			c = colors[i];
+@@ -689,12 +689,12 @@
+ 					i = 1,up = true;
+ 			}
+ 
+-		   //	USL_ScreenDraw(29,22," Ready - Press a Key     ",0x00 + c);
++			USL_ScreenDraw(29,22," Ready - Press a Key     ",0x00 + c);
+ 		}
+ 	}
+-      //	else
+-      //		USL_ScreenDraw(29,22," Ready - Press a Key     ",0x9a);
+-      //	IN_ClearKeysDown();
++      	else
++      		USL_ScreenDraw(29,22," Ready - Press a Key     ",0x9a);
++      	IN_ClearKeysDown();
+ 
+ 	USL_ClearTextScreen();
+ }

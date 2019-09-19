@@ -1,0 +1,8 @@
+[1] Duke Nukem 3D: Atomic Edition v1.4 (Watcom 10.0)
+[2] Duke Nukem 3D: Atomic Edition v1.5 (Watcom 10.0)
+[3] NAM (NAPALM) Full Version 1.0 (Watcom 10.6)
+[4] WW2GI Full Version 1.0 (Watcom 10.6)
+[5] Enhanced Duke (EDuke) 2.00.23 (Watcom 10.6)
+
+[0] Cancel and quit
+

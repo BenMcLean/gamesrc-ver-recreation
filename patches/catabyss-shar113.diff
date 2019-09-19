@@ -1,0 +1,113 @@
+diff --git a/ABSADICT.OBJ b/ABSADICT.OBJ
+index b0e8792..b1c6a31 100644
+Binary files a/ABSADICT.OBJ and b/ABSADICT.OBJ differ
+diff --git a/ABSAHEAD.OBJ b/ABSAHEAD.OBJ
+index 9feed1a..dd67ad3 100644
+Binary files a/ABSAHEAD.OBJ and b/ABSAHEAD.OBJ differ
+diff --git a/ABSEDICT.OBJ b/ABSEDICT.OBJ
+index 2b16875..a335017 100644
+Binary files a/ABSEDICT.OBJ and b/ABSEDICT.OBJ differ
+diff --git a/ABSEHEAD.OBJ b/ABSEHEAD.OBJ
+index be2b224..c637ab7 100644
+Binary files a/ABSEHEAD.OBJ and b/ABSEHEAD.OBJ differ
+diff --git a/ABSMHEAD.OBJ b/ABSMHEAD.OBJ
+index e227b29..0f33d4a 100644
+Binary files a/ABSMHEAD.OBJ and b/ABSMHEAD.OBJ differ
+diff --git a/C4_MAIN.C b/C4_MAIN.C
+index 715244d..bcb194c 100644
+--- a/C4_MAIN.C
++++ b/C4_MAIN.C
+@@ -17,7 +17,9 @@
+  */
+ 
+ // C3_MAIN.C
+-#define CATALOG
++
++// ***SHAREWARE V1.13 RESTORATION*** This should be commented out
++//#define CATALOG
+ 
+ 
+ #include <time.h>
+@@ -506,9 +508,13 @@ void Quit (char *error, ...)
+ 	}
+ 
+ #ifndef CATALOG
+-	else
++	// ***SHAREWARE V1.13 RESTORATION*** Based on Catacomb 3-D sources, adding NoWait check 
++	else if (!NoWait)
++	//else
+ 	{
+ 		movedata (finscreen,0,0xb800,0,4000);
++		// ***SHAREWARE V1.13 RESTORATION*** COMMENTED THESE OUT
++#if 0
+ 
+ 		if (kbhit())
+ 		{
+@@ -516,6 +522,7 @@ void Quit (char *error, ...)
+ 				bioskey(0);
+ 		}
+ 
++#endif
+ 		bioskey (0);
+ 	}
+ #endif
+@@ -844,7 +851,9 @@ void main (void)
+ 			break;
+ 
+ 			case 2:
+-				printf("%s  %s  rev %s\n",GAMENAME,VERSION,REVISION);
++				// ***SHAREWARE V1.13 RESTORATION***
++				printf("%s   %s   %s\n",GAMENAME,VERSION,REVISION);
++				//printf("%s  %s  rev %s\n",GAMENAME,VERSION,REVISION);
+ 				exit(0);
+ 			break;
+ 
+@@ -860,7 +869,9 @@ void main (void)
+ 	if (!LaunchedFromShell)
+ 	{
+ 		clrscr();
+-		puts("You must type CATABYSS at the DOS prompt to run CATACOMB ABYSS 3-D.");
++		// ***SHAREWARE V1.13 RESTORATION***
++		puts("You must type START at the DOS prompt to run CATACOMB ABYSS.");
++		//puts("You must type CATABYSS at the DOS prompt to run CATACOMB ABYSS 3-D.");
+ 		exit(0);
+ 	}
+ 
+diff --git a/GELIB.H b/GELIB.H
+index ccd4e64..ac4b873 100644
+--- a/GELIB.H
++++ b/GELIB.H
+@@ -25,9 +25,15 @@
+ #define SAVEVER_DATA "0.93"
+ #define FILENAME_LEN 15
+ 
++// ***SHAREWARE V1.13 RESTORATION***
++#define  GAMENAME               "CATACOMB ABYSS  "
++#define VERSION         "V1.13   "
++#define  REVISION               "QA [0]"
++#if 0
+ #define  GAMENAME               "CATACOMB ABYSS 3-D"
+ #define VERSION         "V1.24   "
+ #define  REVISION               "1"
++#endif
+ 
+ //#define BOBLIST 1                          //SP - Undefine if not using BOBList
+ 
+diff --git a/GFXE_ABS.EQU b/GFXE_ABS.EQU
+index 97e2c33..32e2f77 100644
+--- a/GFXE_ABS.EQU
++++ b/GFXE_ABS.EQU
+@@ -649,7 +649,12 @@ STARTFONTM  	=	4
+ STARTPICS  	=	4
+ STARTPICM  	=	313
+ STARTSPRITES  	=	314
+-STARTTILE8  	=	315
++; ***SHAREWARE V1.13 RESTORATION*** This one really looks out of place,
++; but looks like this is how it's done in this version (ID_VW ASM only).
++; On the other hand STARTTILE8 should be set to 315 for the C code.
++; Nevertheless, it looks like VW_DrawTile8 is never called in practice.
++STARTTILE8  	=	314
++;STARTTILE8  	=	315
+ STARTTILE8M  	=	316
+ STARTTILE16  	=	317
+ STARTTILE16M  	=	533

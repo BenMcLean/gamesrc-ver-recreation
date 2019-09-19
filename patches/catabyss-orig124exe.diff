@@ -1,0 +1,17 @@
+diff -Nur a/GFXE_ABS.EQU b/GFXE_ABS.EQU
+--- a/GFXE_ABS.EQU	2014-06-07 09:01:00.612535800 +0300
++++ b/GFXE_ABS.EQU	2014-12-12 00:08:32.110398100 +0200
+@@ -649,7 +649,12 @@
+ STARTPICS  	=	4
+ STARTPICM  	=	313
+ STARTSPRITES  	=	314
+-STARTTILE8  	=	315
++; ***V1.13+1.24 EXE RESTORATION*** This one really looks out of place,
++; but looks like this is how it's done in these EXEs (ID_VW ASM only).
++; On the other hand STARTTILE8 should be set to 315 for the C code.
++; Nevertheless, it looks like VW_DrawTile8 is never called in practice.
++STARTTILE8  	=	314
++;STARTTILE8  	=	315
+ STARTTILE8M  	=	316
+ STARTTILE16  	=	317
+ STARTTILE16M  	=	533

@@ -1,0 +1,11 @@
+#option quiet
+#debug all
+#name rott
+sys dos4g
+op verbose
+op map
+op statics
+#op stub=stub.exe
+option CASEEXACT
+option stack=80k
+#lib mca3r

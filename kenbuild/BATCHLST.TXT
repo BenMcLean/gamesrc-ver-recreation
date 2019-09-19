@@ -1,0 +1,11 @@
+[1] A.OBJ as presumably prepared on 19960501 (MASM 5.10 + Watcom Make)
+[2] MMULTI.OBJ as prepared on 19960904 (Watcom 10.5)
+[3] DN3D14 - Matching CACHE1D.OBJ and ENGINE.OBJ objects (Watcom 10.5)
+[4] 19961012 - ENGINE.OBJ (Watcom 10.5)
+[5] DN3D15 - Matching CACHE1D.OBJ and ENGINE.OBJ objects (Watcom 10.5)
+[6] 19970212 - ENGINE.OBJ (Watcom 10.6)
+[7] 19970522 - ENGINE.OBJ (Watcom 10.6)
+[8] 20000614 - All of Ken-Build as prepared on June 2000 (Watcom 11.0)
+
+[0] Cancel and quit
+

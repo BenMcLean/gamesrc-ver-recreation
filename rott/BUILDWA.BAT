@@ -1,0 +1,1 @@
+BUILD.BAT %1 1

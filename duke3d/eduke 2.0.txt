@@ -1,0 +1,70 @@
+Eduke 2.0 Source Code
+------------------------------------------------------------------------------------
+This source code is released under the terms of the license in GNU.txt.
+
+
+From: EDuke.txt
+------------------------------------------------------------------------------------
+Copyright 2000-2003, Matt Saettler.  All Rights Reserved.
+
+This is the Enhanced Duke (EDuke) readme
+
+EDuke is additional functionality to Duke Nukem 3D(TM) from 3D Releams.
+It was created from the original Duke source code by Matt Saettler.
+
+It allows MOD makers to have many more features in their work.
+
+Detailed technical information and a list of MODs that take advantage of 
+EDuke is available at www.saettler.com/EDuke
+
+EDuke was programed by Matt Saettler.  
+
+Matt Saettler matts@saettler.com
+
+Matt was assisted in testing and Duke technical information for version 2.0 by:
+
+C3PO
+Charlie "CONAN" Honig
+Cyborg, James Hollidge, cyborg_jim@yahoo.com
+Manson / Imbruglia / Oliver
+Photon Man PhotonMan@sigma5.demon.co.uk ICQ: 36644805
+James Tan ctan@xtra.co.nz  ICQ: 40072664  WebSite: http://www.dukeworld.com/metalgear
+Richard "TerminX" G. (terminx@theoffspring.net) ICQ: 18083569.  AIM: TerminX1
+Matthew Palmer/Usurper aesire@hotmail.com
+James Ferry http://www.dukeworld.com/oglbt http://holly.mainpage.net http://www.dukeworld.com/nw3 http://www.dukeworld.com/weaponry http://www.dukeworld.com/nw4 ICQ: 32038069
+w0rm
+
+
+Usurper's Notes
+------------------------------------------------------------------------------------
+This release took far, far longer than it should have.  I truly wanted to be able
+to have a working, ready-to-compile source release, but alas, I am not a programmer.
+The programmers that I have shown it to have been unable to compile it.  There are
+a few missing files, it seems.  If anyone is able to sort out the problem, perhaps
+culling the correct files from other Duke3D source releases (or modifying those files
+to work properly with Eduke 2.0) please let us know and we will update this archive.
+
+These were Mr. Saettler's notes regarding the missing files:
+
+>Types.h, develop.h and scriplib.h are all from the MACT library.  I didn't
+>back them up because they're not part of the source I was modifying.
+>
+>If you don't have the types.h in mact, the compiler may pick up a different
+>types.h (since it's supposed to be a system include   )
+>
+>I couldn't find file-lib.h anywhere
+
+Mr. Saettler kindly provided his mact file (see mact.zip).  I hope the included files
+will allow somebody to piece together a working, compilable version of Eduke 2.0.
+
+For information on Eduke's con language additions, there are two lengthy guides at 
+RTCM http://rtcm.thecomitatus.com.
+
+
+Links/Email
+-----------------------------------------------------------------------------------
+Eduke Homepage: http://www.saettler.com/eduke - Matt Saettler's official eduke site
+RTCM Eduke Dev Page: http://rtcm.thecomitatus.com/eduke - continuing eduke development
+matts@saettler.com - Matt Saettler, author of eduke
+corvin@nme.com - RTCM founder and webmaster
+usurper@thecomitatus.com - RTCM oddjob guy--email me with updates for this file
